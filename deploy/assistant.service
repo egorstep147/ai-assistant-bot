@@ -1,0 +1,19 @@
+[Unit]
+Description=Telegram AI assistant
+After=network-online.target postgresql.service redis-server.service
+Wants=network-online.target postgresql.service redis-server.service
+
+[Service]
+User=assistant
+WorkingDirectory=/home/assistant/ai-assistant-bot
+EnvironmentFile=/home/assistant/ai-assistant-bot/.env
+# Новая версия сама применит миграции базы перед стартом
+ExecStartPre=/home/assistant/ai-assistant-bot/.venv/bin/assistant migrate
+ExecStart=/home/assistant/ai-assistant-bot/.venv/bin/assistant run
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
