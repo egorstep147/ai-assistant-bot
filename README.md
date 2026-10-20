@@ -89,10 +89,15 @@ uv run assistant         # бот (polling) + http://127.0.0.1:8090/health
 ## Новый инструмент за 5 минут
 
 ```python
-@tool("convert_units", "Перевести единицы измерения", status="📏 Считаю…",
-      value={"type": "number"}, unit_from={"type": "string"}, unit_to={"type": "string"})
-async def convert_units(ctx: Ctx, value: float, unit_from: str, unit_to: str) -> str:
-    ...
+@tool(
+    "convert_units",
+    "Перевести единицы измерения",
+    status="📏 Считаю…",
+    value={"type": "number"},
+    unit_from={"type": "string"},
+    unit_to={"type": "string"},
+)
+async def convert_units(ctx: Ctx, value: float, unit_from: str, unit_to: str) -> str: ...
 ```
 Положите в `agent/toolbox/`, импортируйте в `toolbox/__init__.py` — агент начнёт им пользоваться.
 

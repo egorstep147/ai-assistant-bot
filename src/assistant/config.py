@@ -25,6 +25,7 @@ class Settings(BaseSettings):
     embed_model: str = "gemini-embedding-001"
     stt_provider: Literal["gemini", "openai"] = "gemini"  # расшифровка голосовых
     gemini_api_key: SecretStr = SecretStr("")
+    gemini_bind: str = ""  # «::» — к Gemini только по IPv6 (если Google режет регион по IPv4 сервера)
     anthropic_api_key: SecretStr = SecretStr("")
     openai_api_key: SecretStr = SecretStr("")
     openai_base_url: str = ""  # OpenRouter, DeepSeek, Ollama: http://localhost:11434/v1
